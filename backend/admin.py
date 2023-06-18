@@ -26,5 +26,10 @@ class CityAdmin(admin.ModelAdmin):
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ("General", {"fields": ["title", "city", "date", "description"]}),
+        ("Imagen", {"fields": ["banner", "img_preview"]}),
+    ]
     list_display = ("title", "description", "date", "city")
+    readonly_fields = ["img_preview"]
     list_filter = ["city"]
