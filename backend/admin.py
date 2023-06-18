@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import City, User, News
+from .models import City, User, News, Image, Video, Document
 
 
 # Register your models here.
@@ -31,5 +31,26 @@ class NewsAdmin(admin.ModelAdmin):
         ("Imagen", {"fields": ["banner", "img_preview"]}),
     ]
     list_display = ("title", "description", "date", "city")
+    readonly_fields = ["img_preview"]
+    list_filter = ["city"]
+
+
+@admin.register(Image)
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ("title", "city", "img_preview")
+    readonly_fields = ["img_preview"]
+    list_filter = ["city"]
+
+
+@admin.register(Video)
+class VideoAdmin(admin.ModelAdmin):
+    list_display = ("title", "city")
+    readonly_fields = ["video_preview"]
+    list_filter = ["city"]
+
+
+@admin.register(Document)
+class DocumentAdmin(admin.ModelAdmin):
+    list_display = ("title", "description", "city")
     readonly_fields = ["img_preview"]
     list_filter = ["city"]
